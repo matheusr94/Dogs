@@ -49,6 +49,7 @@ def rxJavaVersion = '2.1.1'
 def roomVersion = '2.1.0-rc01'
 def navVersion = '2.1.0-alpha05'
 def preferencesVersion = '1.0.0'
+def lifecycle_version = "2.2.0-alpha01"
 
 dependencies {
 
@@ -59,10 +60,20 @@ dependencies {
     implementation "com.android.support:design:$supportVersion"
     implementation "android.arch.lifecycle:extensions:$lifeCycleExtensionVersion"
 
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
+
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha01"
+    implementation "androidx.fragment:fragment-ktx:1.1.0-alpha09"
+
+
+
+
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
 
@@ -77,6 +88,8 @@ dependencies {
 
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
+
+    implementation("androidx.core:core-ktx:1.6.0")
 
     implementation "com.github.bumptech.glide:glide:$glideVersion"
 
