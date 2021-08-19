@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+            name="dog"
+            type="matheusrodrigues.androidapps.dogs.model.DogBreed" />
+    </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            app:srcCompat="@drawable/dog"
+            android:imageUrl="@{dog.imageUrl}"
             android:scaleType="fitCenter"
             android:minHeight="200dp"/>
 
@@ -29,7 +35,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
-            android:text="Nome cão"
+            android:text="@{dog.dogBreed}"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -45,7 +51,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
-            android:text="Dog purpose"
+            android:text="@{dog.bredFor}"
             android:textSize="14sp"/>
 
         <TextView
@@ -60,7 +66,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
-            android:text="Dog temperament"
+            android:text="@{dog.temperament}"
             android:textSize="14sp"/>
 
         <TextView
@@ -75,7 +81,7 @@
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
-            android:text="Dog Lifespan"
+            android:text="@{dog.lifeSpan}"
             android:textSize="14sp"/>
     </RelativeLayout>
 </layout>
