@@ -12,6 +12,7 @@ import matheusrodrigues.androidapps.dogs.model.DogBreed
 import matheusrodrigues.androidapps.dogs.model.DogDao
 import matheusrodrigues.androidapps.dogs.model.DogDatabase
 import matheusrodrigues.androidapps.dogs.model.DogsApiService
+import matheusrodrigues.androidapps.dogs.util.NotificationsHelper
 import matheusrodrigues.androidapps.dogs.util.SharedPreferencesHelper
 
 class ListViewModel(application: Application): BaseViewModel(application) {
@@ -59,7 +60,7 @@ class ListViewModel(application: Application): BaseViewModel(application) {
                     override fun onSuccess(dogList: List<DogBreed>) {
                         storeDogsLocally(dogList)
                         Toast.makeText(getApplication(), "Dogs retrieved from endpoint", Toast.LENGTH_SHORT).show()
-
+                        NotificationsHelper(getApplication()).createNotification()
                     }
                     override fun onError(e: Throwable) {
                         dogsLoadError.value = true
