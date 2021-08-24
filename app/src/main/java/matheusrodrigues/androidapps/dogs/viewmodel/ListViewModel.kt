@@ -18,7 +18,7 @@ import matheusrodrigues.androidapps.dogs.util.SharedPreferencesHelper
 class ListViewModel(application: Application): BaseViewModel(application) {
 
     private var prefHelper = SharedPreferencesHelper(getApplication())
-    private var refreshTime = 10 * 1000 * 1000 * 1000L
+    private var refreshTime = 5 * 60 * 1000 * 1000 *  1000L
 
     private val dogsService = DogsApiService()
     private val disposable = CompositeDisposable()
@@ -28,11 +28,23 @@ class ListViewModel(application: Application): BaseViewModel(application) {
     val loading = MutableLiveData<Boolean>()
 
     fun refresh() {
+        checkCacheDuration()
         val updateTime = prefHelper.getUpdateTime()
         if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime){
             fetchFromDatabase()
         }
         fetchFromRemote()
+    }
+
+    private fun checkCacheDuration(){
+        val cachePreference = prefHelper.getCacheDuration()
+
+        try {
+            val cachePreferenceInt = cachePreference?.toInt() ?: 5 * 60
+            refreshTime = cachePreferenceInt.times(1000 * 1000 *  1000L)
+        }catch (ex: NumberFormatException){
+            ex.printStackTrace()
+        }
     }
 
     fun refreshBypassCache(){
